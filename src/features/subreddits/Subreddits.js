@@ -1,29 +1,46 @@
 import "./Subreddits.css";
 
-import { useEffect, useState } from "react";
-import { getSubreddits, getSubredditsWithParams } from "../../api/reddit";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FaReddit, FaAngleDoubleDown } from "react-icons/fa";
+
+import {
+  fetchSubreddits,
+  fetchNextSubreddits,
+  selectSubreddits,
+} from "../../store/subredditSlice";
 
 const Subreddits = () => {
-  let [subreddits, setSubreddits] = useState([]);
+  const dispatch = useDispatch();
+  const subreddits = useSelector(selectSubreddits);
 
   useEffect(() => {
-    getSubreddits().then((data) => {
-      setSubreddits(data.subreddits);
-      console.log(data.subreddits);
-    });
-  }, []);
+    dispatch(fetchSubreddits());
+  }, [dispatch]);
+
+  const onNextHandler = () => {
+    dispatch(fetchNextSubreddits(subreddits.count, subreddits.after));
+  };
 
   return (
     <>
       <h2>Subreddits</h2>
       <ul>
-        {subreddits.map((data) => (
+        {subreddits.subreddits.map((data, i) => (
           <Subreddit
-            key={data.id}
+            key={i}
             displayName={data.display_name}
             iconImg={data.icon_img}
           />
         ))}
+        {subreddits.after && !subreddits.isNextLoading && (
+          <li>
+            <button onClick={onNextHandler}>
+              <FaAngleDoubleDown className="icon" style={{ width: "2em" }} />
+              Add More...
+            </button>
+          </li>
+        )}
       </ul>
     </>
   );
@@ -31,9 +48,15 @@ const Subreddits = () => {
 
 const Subreddit = (props) => {
   return (
-    <li className="subreddit">
-      { props.iconImg && <img src={props.iconImg} alt={props.displayName} />}
-      {props.displayName}
+    <li>
+      <button>
+        {props.iconImg ? (
+          <img className="icon" src={props.iconImg} alt={props.displayName} />
+        ) : (
+          <FaReddit className="icon" style={{ width: "2em" }} />
+        )}
+        {props.displayName}
+      </button>
     </li>
   );
 };
