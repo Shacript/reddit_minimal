@@ -1,15 +1,17 @@
 import React , { useEffect } from "react";
-import { Link , Routes , Route } from "react-router-dom"
+import { Routes , Route } from "react-router-dom"
 import "./App.css";
 import { getSubreddits, getSubredditsWithParams } from "./api/reddit"
 
-import Header from "./features/header/Header"
 import HomePage from "./containers/homePage/HomePage"
+
+import Header from "./features/header/Header"
+import Subreddits from "./features/subreddits/Subreddits"
 
 function App() {
 
   useEffect(() => {
-
+    
   },[])
 
   return (
@@ -21,7 +23,7 @@ function App() {
         </Routes>
       </main>
       <aside>
-        <h1>Subreddits</h1>
+        <Subreddits />
       </aside>
     </div>
   );
