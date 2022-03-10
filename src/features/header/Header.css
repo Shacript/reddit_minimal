@@ -1,0 +1,23 @@
+header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  font-size: 1.5em;
+  align-items: center;
+  column-gap: 0.5em;
+  margin-right: 2em;
+}
+
+.logo p {
+  color: var(--color-link-text);
+}
+
+@media only screen and (max-width: 600px) {
+  .logo p {
+    display: none;
+  }
+}

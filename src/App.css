@@ -1,3 +1,19 @@
-:root{
-  --color-background: #212126;
+:root {
+  --color-dark: #1b1c1d;
+  --color-light: #2f3136;
+  --color-body-text: #808182;
+  --color-mid: #26282b;
+  --color-link-text: #a8a8a8;
+  --color-main: #39ddc9;
+}
+
+.App {
+  padding: 1.5em 3em;
+  display:flex;
+  flex-wrap: wrap;
+}
+
+main{
+  width:80%;
+  margin-right: 2em;
 }
