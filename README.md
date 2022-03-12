@@ -14,10 +14,10 @@
 
 - [ ] ~~Write unit tests for your components using Jest and Enzyme~~
 - [ ] ~~Write end-to-end tests for your application~~
-( Stuck with this test stuff for too long ... ) 
-#I'll leave my old Github action to let you guys know my pain.
-( So i decide to skip this and prepare for study at backend course soon .)
-( Don't worry i promise that i gonna redo this on my Generation Project . )
+- - ( Stuck with this test stuff for too long ... ) 
+- - #I'll leave my old Github action to let you guys know my pain.
+- - ( So i decide to skip this and prepare for study at backend course soon .)
+- - ( Don't worry i promise that i gonna redo this on my Generation Project . )
 
 - [x] Users can use the application on any device (desktop to mobile)
 
