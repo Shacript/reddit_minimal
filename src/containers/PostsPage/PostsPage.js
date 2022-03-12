@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCommentDots, FaAngleDoubleDown } from "react-icons/fa";
 
+import ReactMarkdown from "react-markdown";
+
+import { useNavigate } from "react-router-dom";
+
 import "./PostsPage.css";
 
 import SearchBar from "../../features/searchBar/SearchBar";
@@ -14,6 +18,7 @@ import {
 } from "../../store/subredditPostsSlice";
 
 const PostsPage = () => {
+  const navigate = useNavigate();
   const subreddit = useSelector(selectSubreddit);
   const posts = useSelector(selectFilteredSubredditPosts);
   const dispatch = useDispatch();
@@ -23,7 +28,9 @@ const PostsPage = () => {
   }, [dispatch]);
 
   const onNextHandler = () => {
-    dispatch(fetchNextSubredditPosts("/r/home",subreddit.count, subreddit.after));
+    dispatch(
+      fetchNextSubredditPosts("/r/home", subreddit.count, subreddit.after)
+    );
   };
 
   return (
@@ -34,7 +41,11 @@ const PostsPage = () => {
       </div>
       <div className="post-list">
         {posts.map((post, i) => (
-          <div className="post" key={i}>
+          <div
+            className="post"
+            key={i}
+            onClick={() => navigate(post.permalink)}
+          >
             <p>
               Posted by{" "}
               <a
@@ -47,7 +58,9 @@ const PostsPage = () => {
             </p>
             <div className="post-title">{post.title}</div>
             {post.selftext && (
-              <p className="post-selftext-container">{post.selftext}</p>
+              <div className="post-selftext-container">
+                <ReactMarkdown children={post.selftext} />
+              </div>
             )}
             {post.url.endsWith(".jpg") && (
               <div className="post-image-container">

@@ -43,3 +43,12 @@ export const getSubredditPostWithParams = async (
     after: json.data.after || null,
   };
 };
+
+export const getSubredditPostAndComment = async (permalink) => {
+  const response = await fetch(`${API_ROOT}/${permalink}.json`);
+  const json = await response.json();
+  return {
+    post: json[0].data.children[0].data,
+    comments: json[1].data.children.map((comment) => comment.data),
+  };
+};
