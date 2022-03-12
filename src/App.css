@@ -8,6 +8,22 @@
   --color-main: #39ddc9;
 }
 
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mid);
+}
+
 .App {
   display: flex;
   flex-wrap: wrap;
