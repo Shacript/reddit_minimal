@@ -37,7 +37,7 @@ const Subreddits = () => {
           <li>
             <button onClick={onNextHandler}>
               <FaAngleDoubleDown className="icon" style={{ width: "2em" }} />
-              Add More...
+              Load more...
             </button>
           </li>
         )}

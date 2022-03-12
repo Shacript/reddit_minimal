@@ -1,6 +1,13 @@
-.postsPage h2 {
+a {
+  color: var(--color-link-text);
+}
+
+.postsPage-header {
   background-color: var(--color-light);
   padding: 1.2em;
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
 }
 
 .post-list {
@@ -16,11 +23,27 @@
   padding: 2em;
 }
 
-.post .post-image-container {
+.post .post-title {
+  color: var(--color-heading-text);
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.post .post-image-container,
+.post .post-selftext-container {
   width: 100%;
   overflow: hidden;
+  margin-bottom: 1em;
 }
 
 .post .post-image {
-  width: 50%;
+  width: 100%;
+  height: auto;
+}
+
+.post .post-footer span {
+  display: inline-flex;
+  border: 1px solid var(--color-body-text);
+  padding: 0.5em 1em;
+  align-items: center;
 }

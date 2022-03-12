@@ -3,9 +3,8 @@ header {
   align-items: center;
   width: 100%;
   background-color: var(--color-light);
-  padding-left: 1.5em;
-  padding-right: 1.5em;
   margin-bottom: 1.5em;
+  justify-content: center;
 }
 
 .logo {
@@ -18,10 +17,4 @@ header {
 
 .logo p {
   color: var(--color-link-text);
-}
-
-@media only screen and (max-width: 600px) {
-  .logo p {
-    display: none;
-  }
 }
