@@ -10,6 +10,5 @@ test("renders react webpage", () => {
       <App />
     </Provider>
   );
-
   expect(getByText(/learn/i)).toBeInTheDocument();
 });
