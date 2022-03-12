@@ -11,6 +11,7 @@
 .App {
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 1.5em;
 }
 
 main {
@@ -19,8 +20,8 @@ main {
   padding-right: 1.5em;
 }
 
-aside{
-  flex:1;
+aside {
+  flex: 1;
   padding-right: 15em;
 }
 
@@ -30,7 +31,7 @@ aside{
     width: 100%;
   }
 
-  aside{
+  aside {
     margin-top: 1.5em;
     padding-left: 1.5em;
     padding-right: 1.5em;

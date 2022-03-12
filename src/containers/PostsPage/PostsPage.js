@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaCommentDots, FaAngleDoubleDown } from "react-icons/fa";
+import { FaAngleDoubleDown } from "react-icons/fa";
 
-import ReactMarkdown from "react-markdown";
-
-import { useNavigate } from "react-router-dom";
+import Post from "../../features/post/post";
 
 import "./PostsPage.css";
 
@@ -17,21 +15,31 @@ import {
   selectFilteredSubredditPosts,
 } from "../../store/subredditPostsSlice";
 
+import { selectSelectedSubreddit } from "../../store/subredditSlice";
+
 const PostsPage = () => {
-  const navigate = useNavigate();
   const subreddit = useSelector(selectSubreddit);
   const posts = useSelector(selectFilteredSubredditPosts);
+  const selectedSubreddit = useSelector(selectSelectedSubreddit);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSubredditPosts("/r/home"));
-  }, [dispatch]);
+    dispatch(fetchSubredditPosts(selectedSubreddit));
+  }, [dispatch, selectedSubreddit]);
 
   const onNextHandler = () => {
     dispatch(
-      fetchNextSubredditPosts("/r/home", subreddit.count, subreddit.after)
+      fetchNextSubredditPosts(
+        selectedSubreddit,
+        subreddit.count,
+        subreddit.after
+      )
     );
   };
+
+  if (subreddit.isLoading) {
+    return <h1>Loading . . . !</h1>;
+  }
 
   return (
     <div className="postsPage">
@@ -41,39 +49,7 @@ const PostsPage = () => {
       </div>
       <div className="post-list">
         {posts.map((post, i) => (
-          <div
-            className="post"
-            key={i}
-            onClick={() => navigate(post.permalink)}
-          >
-            <p>
-              Posted by{" "}
-              <a
-                href={`https://www.reddit.com/u/${post.author}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {post.author}
-              </a>
-            </p>
-            <div className="post-title">{post.title}</div>
-            {post.selftext && (
-              <div className="post-selftext-container">
-                <ReactMarkdown children={post.selftext} />
-              </div>
-            )}
-            {post.url.endsWith(".jpg") && (
-              <div className="post-image-container">
-                <img src={post.url} className="post-image" alt="" />
-              </div>
-            )}
-            <div className="post-footer">
-              <span>
-                <FaCommentDots style={{ marginRight: "5px" }} /> Comment{" "}
-                {post.num_comments}
-              </span>
-            </div>
-          </div>
+          <Post post={post} clickToNavigate={true} key={i} />
         ))}
         {subreddit.after && (
           <div className="post" onClick={onNextHandler}>

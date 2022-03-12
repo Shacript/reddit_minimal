@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
-import ReactMarkdown from 'react-markdown';
-
-import { FaCommentDots } from "react-icons/fa";
+import Post from "../../features/post/post";
 
 import {
   selectSubredditPost,
@@ -37,35 +35,7 @@ const PostsPage = () => {
       </div>
 
       <div className="post-list">
-        <div className="post">
-          <p>
-            Posted by{" "}
-            <a
-              href={`https://www.reddit.com/u/${post.author}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {post.author}
-            </a>
-          </p>
-          <div className="post-title">{post.title}</div>
-          {post.selftext && (
-            <div className="post-selftext-container">
-              <ReactMarkdown children={post.selftext} />
-            </div>
-          )}
-          {post.url.endsWith(".jpg") && (
-            <div className="post-image-container">
-              <img src={post.url} className="post-image" alt="" />
-            </div>
-          )}
-          <div className="post-footer">
-            <span>
-              <FaCommentDots style={{ marginRight: "5px" }} /> Comment{" "}
-              {post.num_comments}
-            </span>
-          </div>
-        </div>
+        <Post post={post} linkToRealReddit={true} />
 
         {comments.map((comment, i) => (
           <div className="post" key={i}>

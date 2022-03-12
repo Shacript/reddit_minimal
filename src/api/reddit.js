@@ -21,7 +21,7 @@ export const getSubredditsWithParams = async (next_count, next_after) => {
 };
 
 export const getSubredditPost = async (subreddit) => {
-  const response = await fetch(`${API_ROOT}${subreddit}.json`);
+  const response = await fetch(`${API_ROOT}/${subreddit}.json`);
   const json = await response.json();
   return {
     posts: json.data.children.map((post) => post.data),
@@ -35,7 +35,7 @@ export const getSubredditPostWithParams = async (
   next_after
 ) => {
   const response = await fetch(
-    `${API_ROOT}${subreddit}.json?count=${next_count}&after=${next_after}`
+    `${API_ROOT}/${subreddit}.json?count=${next_count}&after=${next_after}`
   );
   const json = await response.json();
   return {

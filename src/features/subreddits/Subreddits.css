@@ -3,7 +3,13 @@
   padding: 2em;
 }
 
-h2 {
+.active {
+  color: #fff;
+  text-decoration: underline;
+}
+
+h2,
+h3 {
   padding: 0;
   margin: 0;
 }

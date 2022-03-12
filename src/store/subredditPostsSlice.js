@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getSubredditPost, getSubredditPostWithParams } from "../api/reddit";
 
+import { setSelectedSubreddit } from "./subredditSlice";
+
 const initialState = {
   after: "",
   count: 0,
@@ -10,7 +12,6 @@ const initialState = {
   isNextError: false,
   isNextLoading: false,
   searchTerm: "",
-  selectedSubreddit: "",
 };
 
 const subredditPostsSlice = createSlice({
@@ -73,6 +74,7 @@ export const selectSearchTerm = (state) => state.subredditPosts.searchTerm;
 export const fetchSubredditPosts = (subreddit) => async (dispatch) => {
   try {
     dispatch(startGetSubredditPosts());
+    dispatch(setSelectedSubreddit(subreddit));
     const response = await getSubredditPost(subreddit);
     dispatch(getSubredditPostsSuccess(response));
   } catch (err) {
@@ -80,15 +82,20 @@ export const fetchSubredditPosts = (subreddit) => async (dispatch) => {
   }
 };
 
-export const fetchNextSubredditPosts = (subreddit,count, after) => async (dispatch) => {
-  try {
-    dispatch(startGetNextSubredditPosts());
-    const response = await getSubredditPostWithParams(subreddit,count, after);
-    dispatch(getNextSubredditPostsSuccess(response));
-  } catch (err) {
-    dispatch(getNextSubredditPostsFailed());
-  }
-};
+export const fetchNextSubredditPosts =
+  (subreddit, count, after) => async (dispatch) => {
+    try {
+      dispatch(startGetNextSubredditPosts());
+      const response = await getSubredditPostWithParams(
+        subreddit,
+        count,
+        after
+      );
+      dispatch(getNextSubredditPostsSuccess(response));
+    } catch (err) {
+      dispatch(getNextSubredditPostsFailed());
+    }
+  };
 
 export const selectFilteredSubredditPosts = (state) =>
   state.subredditPosts.posts.filter((post) =>

@@ -10,6 +10,8 @@ import {
   selectSubreddits,
 } from "../../store/subredditSlice";
 
+import { fetchSubredditPosts } from "../../store/subredditPostsSlice";
+
 const Subreddits = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
@@ -22,6 +24,10 @@ const Subreddits = () => {
     dispatch(fetchNextSubreddits(subreddits.count, subreddits.after));
   };
 
+  if(subreddits.isLoading){
+    return(<h1>Loading . . .</h1>)
+  }
+
   return (
     <div className="subreddits">
       <h2>Subreddits</h2>
@@ -31,6 +37,8 @@ const Subreddits = () => {
             key={i}
             displayName={data.display_name}
             iconImg={data.icon_img}
+            active={data.display_name_prefixed === subreddits.selectedSubreddit}
+            subreddit={data.display_name_prefixed}
           />
         ))}
         {subreddits.after && !subreddits.isNextLoading && (
@@ -47,15 +55,19 @@ const Subreddits = () => {
 };
 
 const Subreddit = (props) => {
+  const dispatch = useDispatch();
+
   return (
     <li>
-      <button>
+      <button onClick={() => dispatch(fetchSubredditPosts(props.subreddit))}>
         {props.iconImg ? (
           <img className="icon" src={props.iconImg} alt={props.displayName} />
         ) : (
           <FaReddit className="icon" style={{ width: "2em" }} />
         )}
-        {props.displayName}
+        <span className={props.active ? "active" : ""}>
+          {props.displayName}
+        </span>
       </button>
     </li>
   );

@@ -9,12 +9,16 @@ const initialState = {
   isLoading: false,
   isNextError: false,
   isNextLoading: false,
+  selectedSubreddit: "r/Home",
 };
 
 const subredditsSlice = createSlice({
   name: "subreddits",
   initialState,
   reducers: {
+    setSelectedSubreddit(state, action) {
+      state.selectedSubreddit = action.payload;
+    },
     startGetSubreddit(state) {
       state.isLoading = true;
       state.isError = false;
@@ -50,6 +54,7 @@ const subredditsSlice = createSlice({
 });
 
 export const {
+  setSelectedSubreddit,
   startGetSubreddit,
   getSubredditsSuccess,
   getSubredditsFailed,
@@ -81,3 +86,6 @@ export const fetchNextSubreddits = (count, after) => async (dispatch) => {
 };
 
 export const selectSubreddits = (state) => state.subreddits;
+
+export const selectSelectedSubreddit = (state) =>
+  state.subreddits.selectedSubreddit;
