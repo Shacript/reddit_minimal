@@ -10,6 +10,12 @@ a {
   column-gap: 1em;
 }
 
+.postsPage-header-loading {
+  background-color: var(--color-light);
+  padding: 1.2em;
+  align-items: center;
+}
+
 .post-list {
   display: flex;
   flex-wrap: wrap;

@@ -17,6 +17,8 @@ import {
 
 import { selectSelectedSubreddit } from "../../store/subredditSlice";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 const PostsPage = () => {
   const subreddit = useSelector(selectSubreddit);
   const posts = useSelector(selectFilteredSubredditPosts);
@@ -38,28 +40,67 @@ const PostsPage = () => {
   };
 
   if (subreddit.isLoading) {
-    return <h1>Loading . . . !</h1>;
+    return (
+      <SkeletonTheme
+        baseColor="var(--color-mid)"
+        highlightColor="var(--color-light)"
+      >
+        <div className="postsPage">
+          <div className="postsPage-header-loading">
+            <Skeleton />
+          </div>
+          <div className="post-list">
+            <PostsLoading />
+          </div>
+        </div>
+      </SkeletonTheme>
+    );
   }
 
   return (
     <div className="postsPage">
       <div className="postsPage-header">
-        <h2>Posts</h2>
         <SearchBar />
       </div>
       <div className="post-list">
         {posts.map((post, i) => (
           <Post post={post} clickToNavigate={true} key={i} />
         ))}
-        {subreddit.after && (
+        {subreddit.after && !subreddit.isNextLoading ? (
           <div className="post" onClick={onNextHandler}>
             <div className="post-title" style={{ marginBottom: "0" }}>
               <FaAngleDoubleDown /> Load more...
             </div>
           </div>
+        ) : (
+          subreddit.isNextLoading && <PostsLoading />
         )}
       </div>
     </div>
+  );
+};
+
+const PostsLoading = () => {
+  let loadingArray = [];
+
+  for (let i = 0; i < 5; i++) {
+    loadingArray.push(
+      <div className="post">
+        <Skeleton style={{ width: "10em" }} />
+        <div className="post-title" style={{ marginBottom: "0" }}>
+          <Skeleton />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <SkeletonTheme
+      baseColor="var(--color-mid)"
+      highlightColor="var(--color-light)"
+    >
+      {loadingArray}
+    </SkeletonTheme>
   );
 };
 

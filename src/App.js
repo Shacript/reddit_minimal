@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import PostsPage from "./containers/PostsPage/PostsPage";
 import PostPage from "./containers/PostPage/PostPage";

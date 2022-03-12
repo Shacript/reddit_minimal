@@ -9,6 +9,8 @@ import {
   fetchSubredditPostAndComments,
 } from "../../store/subredditPostSlice";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 const PostsPage = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -24,7 +26,21 @@ const PostsPage = () => {
   }, [dispatch, params]);
 
   if (subredditPost.isLoading || !post.author) {
-    return <h1>Still loading !</h1>;
+    return (
+      <SkeletonTheme
+        baseColor="var(--color-mid)"
+        highlightColor="var(--color-light)"
+      >
+        <div className="postsPage">
+          <div className="postsPage-header-loading">
+            <Skeleton />
+          </div>
+          <div className="post-list">
+            <PostsLoading />
+          </div>
+        </div>
+      </SkeletonTheme>
+    );
   }
 
   return (
@@ -55,6 +71,30 @@ const PostsPage = () => {
         ))}
       </div>
     </>
+  );
+};
+
+const PostsLoading = () => {
+  let loadingArray = [];
+
+  for (let i = 0; i < 5; i++) {
+    loadingArray.push(
+      <div className="post">
+        <Skeleton style={{ width: "10em" }} />
+        <div className="post-title" style={{ marginBottom: "0" }}>
+          <Skeleton />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <SkeletonTheme
+      baseColor="var(--color-mid)"
+      highlightColor="var(--color-light)"
+    >
+      {loadingArray}
+    </SkeletonTheme>
   );
 };
 

@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaReddit, FaAngleDoubleDown } from "react-icons/fa";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
 import {
   fetchSubreddits,
   fetchNextSubreddits,
@@ -11,6 +13,7 @@ import {
 } from "../../store/subredditSlice";
 
 import { fetchSubredditPosts } from "../../store/subredditPostsSlice";
+
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -24,8 +27,15 @@ const Subreddits = () => {
     dispatch(fetchNextSubreddits(subreddits.count, subreddits.after));
   };
 
-  if(subreddits.isLoading){
-    return(<h1>Loading . . .</h1>)
+  if (subreddits.isLoading) {
+    return (
+      <div className="subreddits">
+        <h2>Subreddits</h2>
+        <ul>
+          <LoadingSubreddit />
+        </ul>
+      </div>
+    );
   }
 
   return (
@@ -41,13 +51,15 @@ const Subreddits = () => {
             subreddit={data.display_name_prefixed}
           />
         ))}
-        {subreddits.after && !subreddits.isNextLoading && (
+        {subreddits.after && !subreddits.isNextLoading ? (
           <li>
             <button onClick={onNextHandler}>
               <FaAngleDoubleDown className="icon" style={{ width: "2em" }} />
               Load more...
             </button>
           </li>
+        ) : (
+          subreddits.isNextLoading && <LoadingSubreddit />
         )}
       </ul>
     </div>
@@ -70,6 +82,27 @@ const Subreddit = (props) => {
         </span>
       </button>
     </li>
+  );
+};
+
+const LoadingSubreddit = () => {
+  let loadingArray = [];
+
+  for (let i = 0; i < 25; i++) {
+    loadingArray.push(
+      <li>
+        <Skeleton />
+      </li>
+    );
+  }
+
+  return (
+    <SkeletonTheme
+      baseColor="var(--color-mid)"
+      highlightColor="var(--color-light)"
+    >
+      {loadingArray}
+    </SkeletonTheme>
   );
 };
 
