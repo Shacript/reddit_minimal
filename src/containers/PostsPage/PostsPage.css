@@ -1,0 +1,26 @@
+.postsPage h2 {
+  background-color: var(--color-light);
+  padding: 1.2em;
+}
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post {
+  background-color: var(--color-light);
+  margin-top: 1em;
+  width: 100%;
+  padding: 2em;
+}
+
+.post .post-image-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.post .post-image {
+  width: 50%;
+}

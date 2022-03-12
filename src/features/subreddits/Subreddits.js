@@ -23,7 +23,7 @@ const Subreddits = () => {
   };
 
   return (
-    <>
+    <div className="subreddits">
       <h2>Subreddits</h2>
       <ul>
         {subreddits.subreddits.map((data, i) => (
@@ -42,7 +42,7 @@ const Subreddits = () => {
           </li>
         )}
       </ul>
-    </>
+    </div>
   );
 };
 

@@ -1,24 +1,21 @@
-import React , { useEffect } from "react";
-import { Routes , Route } from "react-router-dom"
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import HomePage from "./containers/homePage/HomePage"
+import PostsPage from "./containers/PostsPage/PostsPage";
 
-import Header from "./features/header/Header"
-import Subreddits from "./features/subreddits/Subreddits"
+import Header from "./features/header/Header";
+import Subreddits from "./features/subreddits/Subreddits";
 
 function App() {
-
-  useEffect(() => {
-    
-  },[])
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />}/>
+          <Route path="/" element={<PostsPage />} />
         </Routes>
       </main>
       <aside>

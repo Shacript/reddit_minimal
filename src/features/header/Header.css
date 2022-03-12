@@ -2,6 +2,10 @@ header {
   display: flex;
   align-items: center;
   width: 100%;
+  background-color: var(--color-light);
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  margin-bottom: 1.5em;
 }
 
 .logo {

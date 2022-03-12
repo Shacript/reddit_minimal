@@ -2,11 +2,12 @@ input {
   height: 2.5em;
   flex: 1;
   background: none;
-  border: 1px solid var(--color-light);
+  border: 1px solid var(--color-body-text);
   color: var(--color-link-text);
   padding-left: 1.5em;
   font-size: 1em;
   justify-self: center;
+  border-radius: 5px;
 }
 
 input:focus {
