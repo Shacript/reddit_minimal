@@ -21,6 +21,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.ts?$": "ts-jest",
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
