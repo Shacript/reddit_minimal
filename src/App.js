@@ -13,8 +13,8 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path={process.env.PUBLIC_URL + '/'} element={<PostsPage />} />
-          <Route path={process.env.PUBLIC_URL + '/*'} element={<PostPage />} />
+          <Route path={"/"} element={<PostsPage />} />
+          <Route path={"/*"} element={<PostPage />} />
         </Routes>
       </main>
       <aside>
