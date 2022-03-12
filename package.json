@@ -25,7 +25,10 @@
   "jest": {
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest"
-    }
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-markdown/)"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
