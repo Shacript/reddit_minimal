@@ -1,3 +1,26 @@
+## Technologies used
+### Framework
+- ReactJS
+### Dependency
+- Redux
+- React-router
+- React-fade-in
+- React-icons
+- React-lazy-load-image-component
+- React-loading-skeleton
+- React-markdown
+
+### API
+- Reddit API
+
+### Hosting
+- Netlify
+
+## Features
+- Many subreddit to choose.
+- View any subreddit posts.
+- View any subreddit comments.
+- Using Search to find any post on a subreddit you picked.
 ## Todo & Future work
 
 - [x] Build the application using React and Redux
@@ -6,10 +29,10 @@
 
 - [x] Use a project management tool (GitHub Projects, Trello, etc.) to plan your work
 
-- [ ] Write a README (using Markdown) that documents your project including:
+- [x] Write a README (using Markdown) that documents your project including:
 
-- - [ ] Technologies used
-- - [ ] Features
+- - [x] Technologies used
+- - [x] Features
 - - [x] Future work
 
 - [ ] ~~Write unit tests for your components using Jest and Enzyme~~
@@ -37,7 +60,7 @@
 
 - [x] Users are delighted with animations and transitions
 
-- [ ] Users are able to leave an error state
+- [x] Users are able to leave an error state
 
 - [ ] Get 90+ scores on Lighthouse
 

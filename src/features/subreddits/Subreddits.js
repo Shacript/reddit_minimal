@@ -2,13 +2,13 @@ import "./Subreddits.css";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaReddit, FaAngleDoubleDown } from "react-icons/fa";
+import { FaReddit, FaAngleDoubleDown, FaRedoAlt } from "react-icons/fa";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 import FadeIn from "react-fade-in";
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import {
   fetchSubreddits,
@@ -36,6 +36,22 @@ const Subreddits = () => {
         <h2>Subreddits</h2>
         <ul>
           <LoadingSubreddit />
+        </ul>
+      </div>
+    );
+  }
+
+  if (subreddits.isError) {
+    return (
+      <div className="subreddits">
+        <h2>Subreddits</h2>
+        <ul>
+          <li>
+            <button onClick={() => dispatch(fetchSubreddits())}>
+              <FaRedoAlt className="icon" style={{ width: "2em" }} />
+              Failed to load ... Click here to try again.
+            </button>
+          </li>
         </ul>
       </div>
     );
@@ -80,7 +96,11 @@ const Subreddit = (props) => {
     <li>
       <button onClick={() => dispatch(fetchSubredditPosts(props.subreddit))}>
         {props.iconImg ? (
-          <LazyLoadImage className="icon" src={props.iconImg} alt={props.displayName} />
+          <LazyLoadImage
+            className="icon"
+            src={props.iconImg}
+            alt={props.displayName}
+          />
         ) : (
           <FaReddit className="icon" style={{ width: "2em" }} />
         )}

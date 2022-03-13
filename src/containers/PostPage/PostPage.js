@@ -61,11 +61,10 @@ const PostsPage = () => {
       <div className="post-list">
         <Post post={post} linkToRealReddit={true} />
 
-        <FadeIn>
-          {comments.map((comment, i) => (
-            <div className="post" key={i}>
+        {comments.map((comment, i) => (
+          <div className="post" key={i}>
+            <FadeIn>
               <div>
-                <img src={comment.url} alt="" />
                 <a
                   href={`https://www.reddit.com/u/${comment.author}`}
                   target="_blank"
@@ -75,12 +74,10 @@ const PostsPage = () => {
                 </a>{" "}
                 <span className="main-color">said_</span>
               </div>
-              <p>
-                <ReactMarkdown>{comment.body}</ReactMarkdown>
-              </p>
-            </div>
-          ))}
-        </FadeIn>
+              <ReactMarkdown>{comment.body}</ReactMarkdown>
+            </FadeIn>
+          </div>
+        ))}
       </div>
     </>
   );

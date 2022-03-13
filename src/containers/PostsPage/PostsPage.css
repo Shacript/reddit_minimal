@@ -21,3 +21,12 @@ a {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.load-btn {
+  cursor: pointer;
+  transition: border 0.2s;
+}
+
+.load-btn:hover {
+  border: 1px solid var(--color-link-text);
+}

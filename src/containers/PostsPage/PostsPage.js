@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaAngleDoubleDown } from "react-icons/fa";
+import { FaAngleDoubleDown, FaRedoAlt } from "react-icons/fa";
 
 import Post from "../../features/post/post";
 
@@ -57,17 +57,45 @@ const PostsPage = () => {
     );
   }
 
+  if (subreddit.isError) {
+    return (
+      <div className="postsPage">
+        <div className="postsPage-header-loading">
+          Oops! Something went wrong.
+        </div>
+        <div className="post-list">
+          <div
+            className="post load-btn"
+            onClick={() => dispatch(fetchSubredditPosts(selectedSubreddit))}
+          >
+            <div className="post-title" style={{ marginBottom: "0" }}>
+              <FaRedoAlt /> Failed to load ... Click here to try again.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="postsPage">
       <div className="postsPage-header">
         <SearchBar />
       </div>
       <div className="post-list">
-        {posts.map((post, i) => (
-          <Post post={post} clickToNavigate={true} key={i} />
-        ))}
-        {subreddit.after && !subreddit.isNextLoading ? (
-          <div className="post" onClick={onNextHandler}>
+        {posts.length > 0 ? (
+          posts.map((post, i) => (
+            <Post post={post} clickToNavigate={true} key={i} />
+          ))
+        ) : (
+          <div className="post">
+            <div className="post-title" style={{ marginBottom: "0" }}>
+              :( No posts matching &quot;{subreddit.searchTerm}&quot;
+            </div>
+          </div>
+        )}
+        {subreddit.after && !subreddit.isNextLoading && posts.length > 0 ? (
+          <div className="post load-btn" onClick={onNextHandler}>
             <div className="post-title" style={{ marginBottom: "0" }}>
               <FaAngleDoubleDown /> Load more...
             </div>

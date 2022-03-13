@@ -18,7 +18,7 @@ const Post = ({ post, clickToNavigate, linkToRealReddit }) => {
     >
       <FadeIn>
         <p>
-          Posted by{" "}
+          <span className="main-color">P`</span>osted by{" "}
           <a
             href={`https://www.reddit.com/u/${post.author}`}
             target="_blank"
