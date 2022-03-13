@@ -1,3 +1,16 @@
+# Reddit Minimal
+This is my first Portfolio project that using React Framework, <br />
+I know that it might not looking good at all but i'm so proud that i made this far . <br />
+
+> Demo : https://sha-reddit-minimal.netlify.app/
+
+### What i learned from here ?
+- Learn How to use such a React , Redux , Router and more !
+- Learn from failure and error that made by me ,_,
+- Learn how to use Github Action to make CI/CD
+- At least i learned how to use JEST also even it can't test on my first react project.
+- Learn how to deploy on Netlify with Github Action ( but i didn't add it for now, hehehe. )
+
 ## Technologies used
 ### Framework
 - ReactJS
