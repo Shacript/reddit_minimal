@@ -75,7 +75,7 @@ I know that it might not looking good at all but i'm so proud that i made this f
 
 - [x] Users are able to leave an error state
 
-- [ ] Get 90+ scores on Lighthouse
+- [x] ~~Get 90+ scores on Lighthouse~~ ( Hard to control image quality from redit :( but at least i tried lazy-load...)
 
 - [ ] ~~OPTIONAL: Set up a CI/CD workflow to automatically deploy your application when the master branch in the repository changes~~ 
 ( Netlify is my choice for now :( )
