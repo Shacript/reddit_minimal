@@ -1,0 +1,18 @@
+.btn-back {
+  background: none;
+  border: 1px solid var(--color-main);
+  color: var(--color-main);
+  border-radius: 2px;
+  padding: 1.5em 2em;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  background-color: var(--color-main);
+  color: var(--color-dark);
+}
+
+.main-color {
+  color: var(--color-main);
+}

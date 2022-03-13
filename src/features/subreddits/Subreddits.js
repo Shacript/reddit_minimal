@@ -6,6 +6,8 @@ import { FaReddit, FaAngleDoubleDown } from "react-icons/fa";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
+import FadeIn from "react-fade-in";
+
 import {
   fetchSubreddits,
   fetchNextSubreddits,
@@ -13,7 +15,6 @@ import {
 } from "../../store/subredditSlice";
 
 import { fetchSubredditPosts } from "../../store/subredditPostsSlice";
-
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -42,25 +43,29 @@ const Subreddits = () => {
     <div className="subreddits">
       <h2>Subreddits</h2>
       <ul>
-        {subreddits.subreddits.map((data, i) => (
-          <Subreddit
-            key={i}
-            displayName={data.display_name}
-            iconImg={data.icon_img}
-            active={data.display_name_prefixed === subreddits.selectedSubreddit}
-            subreddit={data.display_name_prefixed}
-          />
-        ))}
-        {subreddits.after && !subreddits.isNextLoading ? (
-          <li>
-            <button onClick={onNextHandler}>
-              <FaAngleDoubleDown className="icon" style={{ width: "2em" }} />
-              Load more...
-            </button>
-          </li>
-        ) : (
-          subreddits.isNextLoading && <LoadingSubreddit />
-        )}
+        <FadeIn>
+          {subreddits.subreddits.map((data, i) => (
+            <Subreddit
+              key={i}
+              displayName={data.display_name}
+              iconImg={data.icon_img}
+              active={
+                data.display_name_prefixed === subreddits.selectedSubreddit
+              }
+              subreddit={data.display_name_prefixed}
+            />
+          ))}
+          {subreddits.after && !subreddits.isNextLoading ? (
+            <li>
+              <button onClick={onNextHandler}>
+                <FaAngleDoubleDown className="icon" style={{ width: "2em" }} />
+                Load more...
+              </button>
+            </li>
+          ) : (
+            subreddits.isNextLoading && <LoadingSubreddit />
+          )}
+        </FadeIn>
       </ul>
     </div>
   );

@@ -4,12 +4,18 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import Post from "../../features/post/post";
 
+import "./PostPage.css";
+
 import {
   selectSubredditPost,
   fetchSubredditPostAndComments,
 } from "../../store/subredditPostSlice";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
+import ReactMarkdown from "react-markdown";
+
+import FadeIn from "react-fade-in";
 
 const PostsPage = () => {
   const navigate = useNavigate();
@@ -46,29 +52,35 @@ const PostsPage = () => {
   return (
     <>
       <div className="postsPage-header">
-        <button onClick={() => navigate("/")}>Go back</button>
+        <button className="btn-back" onClick={() => navigate("/")}>
+          Go back
+        </button>
         <p>{params["*"]}</p>
       </div>
 
       <div className="post-list">
         <Post post={post} linkToRealReddit={true} />
 
-        {comments.map((comment, i) => (
-          <div className="post" key={i}>
-            <div>
-              <img src={comment.url} alt="" />
-              <a
-                href={`https://www.reddit.com/u/${comment.author}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {comment.author}
-              </a>{" "}
-              said
+        <FadeIn>
+          {comments.map((comment, i) => (
+            <div className="post" key={i}>
+              <div>
+                <img src={comment.url} alt="" />
+                <a
+                  href={`https://www.reddit.com/u/${comment.author}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {comment.author}
+                </a>{" "}
+                <span className="main-color">said_</span>
+              </div>
+              <p>
+                <ReactMarkdown>{comment.body}</ReactMarkdown>
+              </p>
             </div>
-            <p>{comment.body}</p>
-          </div>
-        ))}
+          ))}
+        </FadeIn>
       </div>
     </>
   );

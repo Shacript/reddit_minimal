@@ -23,7 +23,7 @@ li {
   margin-bottom: 0.5em;
 }
 
-button {
+li button {
   height: 2em;
   display: flex;
   align-items: center;
@@ -31,6 +31,12 @@ button {
   background: none;
   color: var(--color-body-text);
   cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+li button:hover {
+  color: var(--color-link-text);
 }
 
 li .icon {

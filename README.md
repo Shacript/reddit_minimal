@@ -35,7 +35,7 @@
 
 - [x] Users are delighted with a cohesive design system
 
-- [ ] Users are delighted with animations and transitions
+- [x] Users are delighted with animations and transitions
 
 - [ ] Users are able to leave an error state
 
