@@ -20,6 +20,8 @@
 
 .post .post-image {
   width: 100%;
+  min-width: 100px;
+  min-height: 100px;
   height: auto;
 }
 
