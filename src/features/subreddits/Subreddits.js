@@ -8,6 +8,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 import FadeIn from "react-fade-in";
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import {
   fetchSubreddits,
   fetchNextSubreddits,
@@ -78,7 +80,7 @@ const Subreddit = (props) => {
     <li>
       <button onClick={() => dispatch(fetchSubredditPosts(props.subreddit))}>
         {props.iconImg ? (
-          <img className="icon" src={props.iconImg} alt={props.displayName} />
+          <LazyLoadImage className="icon" src={props.iconImg} alt={props.displayName} />
         ) : (
           <FaReddit className="icon" style={{ width: "2em" }} />
         )}

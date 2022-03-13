@@ -6,6 +6,8 @@ import "./post.css";
 
 import FadeIn from "react-fade-in";
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const Post = ({ post, clickToNavigate, linkToRealReddit }) => {
   const navigate = useNavigate();
 
@@ -29,7 +31,7 @@ const Post = ({ post, clickToNavigate, linkToRealReddit }) => {
         <div className="post-body-container">
           {post.selftext && <ReactMarkdown children={post.selftext} />}
           {post.url.endsWith(".jpg") && (
-            <img src={post.url} className="post-image" alt="" />
+            <LazyLoadImage src={post.url} className="post-image" alt="" />
           )}
           {post.secure_media && post.secure_media.reddit_video && (
             <video className="post-image" controls>
